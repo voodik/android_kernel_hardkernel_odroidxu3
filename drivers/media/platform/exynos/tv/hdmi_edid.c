@@ -495,6 +495,11 @@ int edid_update(struct hdmi_device *hdev)
 	int ret = 0;
 	int i;
 
+#ifdef CONFIG_MACH_ODROIDXU3
+	if (HdmiEDIDBootArgs == 0)
+		goto out;
+#endif
+
 	edid_misc = 0;
 
 	block_cnt = edid_read(hdev, &edid);

@@ -202,9 +202,7 @@ static struct snd_soc_dai_link odroid_dai[] = {
 	{ /* Primary DAI i/f */
 		.name = "MAX98090 AIF1",
 		.stream_name = "Playback",
-		.cpu_dai_name = "samsung-i2s-sec",
 		.codec_dai_name = "max98090-aif1",
-		.platform_name = "samsung-i2s-sec",
 		.ops = &odroid_ops,
 	}, { /* Secondary DAI i/f */
 		.name = "MAX98090 AIF2",

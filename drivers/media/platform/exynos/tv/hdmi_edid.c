@@ -64,12 +64,12 @@ static int __init hdmi_resolution_setup(char *line)
 }
 __setup("hdmi_phy_res=", hdmi_resolution_setup);
 
-unsigned long   HdmiEDIDBootArgs = 1;
+unsigned long   HdmiEDIDBootArgs = 0;
 
 // Bootargs parsing
 static int __init hdmi_edid_setup(char *line)
 {
-	if(kstrtoul(line, 10, &HdmiEDIDBootArgs) != 0)    HdmiEDIDBootArgs = 1;
+	if(kstrtoul(line, 10, &HdmiEDIDBootArgs) != 0)    HdmiEDIDBootArgs = 0;
 	return 0;
 }
 __setup("edid=", hdmi_edid_setup);
@@ -494,6 +494,11 @@ int edid_update(struct hdmi_device *hdev)
 	int block_cnt = 0;
 	int ret = 0;
 	int i;
+
+#ifdef CONFIG_MACH_ODROIDXU3
+	if (HdmiEDIDBootArgs == 0)
+		goto out;
+#endif
 
 	edid_misc = 0;
 

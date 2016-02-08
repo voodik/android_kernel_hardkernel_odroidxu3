@@ -506,6 +506,8 @@ static int samsung_fake_bat_probe(struct platform_device *pdev)
 	samsung_fake_bat_status_update(
 			&samsung_power_supplies[CHARGER_BATTERY]);
 
+        samsung_cable_check_status(1);
+
 __end__:
 	return ret;
 }
